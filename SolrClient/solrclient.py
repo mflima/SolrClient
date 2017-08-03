@@ -80,6 +80,9 @@ class SolrClient(object):
 
         """
         headers = {'content-type': 'application/x-www-form-urlencoded'}
+        if kwargs and kwargs['headers']:
+            headers.update(kwargs['headers'])
+
         data = query
         resp, con_inf = self.transport.send_request(method='POST',
                                                     endpoint=request_handler,
@@ -114,6 +117,9 @@ class SolrClient(object):
 
         method = 'POST'
         headers = {'content-type': 'application/x-www-form-urlencoded'}
+        if kwargs and kwargs['headers']:
+            headers.update(kwargs['headers'])
+
         params = query
         data = {}
         resp, con_inf = self.transport.send_request(method=method,
